@@ -7,27 +7,41 @@ import java.util.ArrayList;
 
 
 public class Biblioteca {
-    static BookManager bookManager= new BookManager();
-    static BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(System.in));
-    public static ArrayList<String> menuOptions;
-    public Biblioteca() throws IOException
+    BookManager bookManager= new BookManager();
+    BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(System.in));
+    public ArrayList<String> menuOptions;
+    public Biblioteca()
     {
         while(true)
         {
             String welcome= welcomeMessage();
             System.out.println(welcome);
-            String menu=loadmenu();
-            System.out.println(menu);
-            int choice= Integer.parseInt(bufferedReader.readLine());
-            optionSelection(choice);
+            String menu;
+            try {
+                menu = loadmenu();
+                System.out.println(menu);
+            } catch (IOException e2) {
+
+                e2.printStackTrace();
+            }
+            int choice;
+            try {
+                choice = Integer.parseInt(bufferedReader.readLine());
+                optionSelection(choice);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
-    public static String welcomeMessage()
+    public String welcomeMessage()
     {
         String welcomeMessage="------------Welcome to TWU Biblioteca-----------";
         return welcomeMessage;
     }
-    public static String loadmenu() throws IOException
+    public String loadmenu() throws IOException
     {
         menuOptions= new ArrayList<String>();
         String menuoptions=" ";
@@ -41,7 +55,7 @@ public class Biblioteca {
         menuoptions += "Please enter your choice";
         return menuoptions;
     }
-    public static String optionSelection(int choice) throws NullPointerException, IOException
+    public String optionSelection(int choice) throws NullPointerException, IOException
     {
 
         if(choice <= 0 ||choice > menuOptions.size())
@@ -50,7 +64,7 @@ public class Biblioteca {
         }
         if(choice==1)
         {
-            String bookDetails = BookManager.loadBooks();
+            String bookDetails = bookManager.loadBooks();
             System.out.println(bookDetails);
 
         }
@@ -72,7 +86,7 @@ public class Biblioteca {
         }
         return null;
     }
-    public static String checkLibraryNumber(String libraryNumber) throws IOException
+    public String checkLibraryNumber(String libraryNumber) throws IOException
     {
         return "Hello "+libraryNumber+ " Please contact the librarian";
     }

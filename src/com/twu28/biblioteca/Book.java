@@ -29,13 +29,13 @@ public class Book {
 	public void setReservedStatus(boolean reservedStatus) {
 		this.reservedStatus = reservedStatus;
 	}
-public static String getbookDetails(Book d)
+public String getbookDetails()
 {
 	String reserved="available";
-	if(d.getReservedStatus())
+	if(getReservedStatus())
 	{
 		reserved="reserved";
 	}
-	return d.getBookno()+" "+d.getName()+" "+d.getAuthor()+" "+"is"+" "+ reserved;
+	return getBookno()+" "+getName()+" "+getAuthor()+" "+"is"+" "+ reserved;
 }
 }
