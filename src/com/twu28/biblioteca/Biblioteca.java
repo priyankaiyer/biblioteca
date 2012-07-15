@@ -10,37 +10,13 @@ public class Biblioteca {
     BookManager bookManager= new BookManager();
     BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(System.in));
     public ArrayList<String> menuOptions;
-    public Biblioteca()
-    {
-        while(true)
-        {
-            String welcome= welcomeMessage();
-            System.out.println(welcome);
-            String menu;
-            try {
-                menu = loadmenu();
-                System.out.println(menu);
-            } catch (IOException e2) {
-
-                e2.printStackTrace();
-            }
-            int choice;
-            try {
-                choice = Integer.parseInt(bufferedReader.readLine());
-                optionSelection(choice);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
+    /* customer seeing welcome message during the start of the application*/
     public String welcomeMessage()
     {
         String welcomeMessage="------------Welcome to TWU Biblioteca-----------";
         return welcomeMessage;
     }
+    /*customer views the available menu*/
     public String loadmenu() throws IOException
     {
         menuOptions= new ArrayList<String>();
@@ -54,7 +30,9 @@ public class Biblioteca {
         }
         menuoptions += "Please enter your choice";
         return menuoptions;
+
     }
+    /*customer selects an options from the menu*/
     public String optionSelection(int choice) throws NullPointerException, IOException
     {
 
@@ -86,6 +64,7 @@ public class Biblioteca {
         }
         return null;
     }
+    /*checks the library number of the customer*/
     public String checkLibraryNumber(String libraryNumber) throws IOException
     {
         return "Hello "+libraryNumber+ " Please contact the librarian";
@@ -94,6 +73,31 @@ public class Biblioteca {
     public static void main(String args[]) throws IOException
     {
         Biblioteca biblioteca= new Biblioteca();
+        BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(System.in));
+        while(true)
+        {
+            String welcome= biblioteca.welcomeMessage();
+            System.out.println(welcome);
+            String menu;
+            try {
+                menu = biblioteca.loadmenu();
+                System.out.println(menu);
+            } catch (IOException e2) {
+
+                e2.printStackTrace();
+            }
+            int choice;
+            try {
+                choice = Integer.parseInt(bufferedReader.readLine());
+                biblioteca.optionSelection(choice);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
 
     }
 
