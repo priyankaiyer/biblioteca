@@ -16,7 +16,12 @@ public class BibliotecaTest {
     /*test whether the customer sees all the menus */
     @Test
     public void loadmenu_test() throws IOException{
-        String loadmenu_message="1.View all books"+"\n"+"2.Reserve a book"+"\n"+"3.Check library number"+"\n"+"Please enter your choice";
+        String loadmenu_message="1.View all books"+"\n"+
+        "2.Reserve a book"+"\n"+
+        "3.Check library number"+"\n"+
+        "4.View movie list"+"\n"+
+        "5.Please login"+"\n"+
+        "Please enter your choice";
         Assert.assertTrue(biblioteca.loadmenu().contains(loadmenu_message));
 
     }
@@ -30,6 +35,6 @@ public class BibliotecaTest {
     @Test
     public void test_checklibrayNumber() throws NullPointerException, IOException
     {
-        Assert.assertEquals("Hello 111 Please contact the librarian", biblioteca.checkLibraryNumber("111"));
+        Assert.assertEquals("Please talk to the librarian", biblioteca.checkLibraryNumber());
     }
 }

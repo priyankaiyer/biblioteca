@@ -5,14 +5,18 @@ import java.util.ArrayList;
 
 public class BookManager {
 public ArrayList<Book> book= new ArrayList<Book>();
+public BookManager()
 {
+	loadBooks();
+}
+public void loadBooks(){
 book.add(new Book("Book1","author1",01,false));
 book.add(new Book("Book2","author2",02,false));
 book.add(new Book("Book3","author3",03,true));
 book.add(new Book("Book4","author4",4,false));
 book.add(new Book("Book5","author5",05,true));
 }
-	public String loadBooks() throws IOException, NullPointerException
+	public String listBooks() throws IOException, NullPointerException
 	{
 		String bookDetails="";
 	for (Book book1:book)

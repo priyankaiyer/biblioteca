@@ -11,7 +11,7 @@ public class BookManagerTest {
     /*customer views all the books.*/
 	public void loadbooks_test() throws Exception {
 		String books_list="1 Book1 author1 is available"+"\n"+"2 Book2 author2 is available"+"\n"+"3 Book3 author3 is reserved"+"\n"+"4 Book4 author4 is available"+"\n"+"5 Book5 author5 is reserved"+"\n";
-		Assert.assertEquals(books_list,bookManager.loadBooks());
+		Assert.assertEquals(books_list,bookManager.listBooks());
 		
 	}
     /*customer reserves the and gets the notification for available book*/
