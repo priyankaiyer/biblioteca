@@ -10,10 +10,11 @@ public class UserManagerTest extends BibliotecaTest{
     private UserManager userManager = new UserManager();
     
     @Test
-    public void test_should_login_menu_item() throws IOException{
-        String loginMenuItem = "Please login";
-
-        Assert.assertTrue(biblioteca.loadmenu().contains(loginMenuItem));
+    @Override
+    public void loadmenu_test() throws IOException
+    {
+        String loadmenu_message = "Please login";
+        Assert.assertTrue(biblioteca.loadmenu().contains(loadmenu_message));
     }
 
     @Test
