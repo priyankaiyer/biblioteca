@@ -1,8 +1,8 @@
 package com.twu28.biblioteca;
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
 
 
 public class UserManagerTest extends BibliotecaTest{
@@ -26,16 +26,9 @@ public class UserManagerTest extends BibliotecaTest{
     @Test
     public void test_should_fail_to_login_when_provide_wrong_username_or_password(){
         User user_invalid_name = new User("111-0001", "user1");
-        User user_invalid_password = new User("111-1112", "pass2");
-        User user_invalid = new User("111-000", "0000");
 
         Assert.assertEquals("Invalid username/ password", userManager.login(user_invalid_name));
         Assert.assertEquals(false, user_invalid_name.isLogged_in());
 
-        Assert.assertEquals("Invalid username/ password", userManager.login(user_invalid_password));
-        Assert.assertEquals(false, user_invalid_password.isLogged_in());
-
-        Assert.assertEquals("Invalid username/ password", userManager.login(user_invalid));
-        Assert.assertEquals(false, user_invalid.isLogged_in());
     }
 }
