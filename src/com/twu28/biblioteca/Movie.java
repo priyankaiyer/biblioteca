@@ -2,9 +2,9 @@ package com.twu28.biblioteca;
 
 public class Movie {
 
-	String movie_name;
-	String movie_director;
-	String movie_rating="N/A";
+	private String movie_name;
+	private String movie_director;
+	private String movie_rating="N/A";
 	public Movie(String movie_name, String movie_director, String movie_rating) {
 		this.movie_director = movie_director;
 		this.movie_name = movie_name;

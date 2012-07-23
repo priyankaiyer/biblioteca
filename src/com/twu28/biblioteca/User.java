@@ -2,8 +2,8 @@ package com.twu28.biblioteca;
 
 public class User {
 
-String user_name;
-String password;
+private String user_name;
+private String password;
 boolean logged_in= false;
 
 public User(String user_name,String password)
