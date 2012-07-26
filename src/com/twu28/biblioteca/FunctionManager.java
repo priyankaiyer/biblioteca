@@ -42,7 +42,7 @@ class ViewAllBooksFunction implements Function{
 class ReserveBooksFunction implements Function{
     @Override
     public String execute(Biblioteca biblioteca) throws NumberFormatException, IOException{
-        return biblioteca.bookReserve();
+        return biblioteca.getBookManager().reserveBook(biblioteca.getBookManager());
     }
 }
 
@@ -63,6 +63,6 @@ class ViewAllMoviesFunction implements Function{
 class UserLoginFunction implements Function {
     @Override
     public String execute(Biblioteca biblioteca) throws IOException{
-        return biblioteca.userlogin();
+        return biblioteca.getUserManager().login();
     }
 }

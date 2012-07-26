@@ -27,9 +27,20 @@ public String getPassword() {
 public void setLogged_in(boolean logged_in) {
 	this.logged_in = logged_in;
 }
+
+public String userlogin()
+{
+    this.setLogged_in(true);
+    return toString();
+}
 @Override
 public String toString() {
-    return getUser_name()+" "+getPassword();
+    String reserved= "is not logged in";
+    if(isLogged_in())
+    {
+        reserved="is logged in" ;
+    }
+    return getUser_name()+" "+reserved;
 }
 
 }

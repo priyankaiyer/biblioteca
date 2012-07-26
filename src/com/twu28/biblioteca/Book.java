@@ -14,19 +14,19 @@ public class Book {
 		this.reservedStatus=reservedStatus;
 		
 	}
-	public String getName() {
+	private String getName() {
 		return name;
 	}
-	public String getAuthor() {
+	private String getAuthor() {
 		return author;
 	}
-	public int getBookno() {
+	private int getBookno() {
 		return bookno;
 	}
-	public boolean getReservedStatus() {
+	private boolean getReservedStatus() {
 		return reservedStatus;
 	}
-	public void setReservedStatus(boolean reservedStatus) {
+	private void setReservedStatus(boolean reservedStatus) {
 		this.reservedStatus = reservedStatus;
 	}
 public String getbookDetails()
@@ -37,5 +37,16 @@ public String getbookDetails()
 		reserved="reserved";
 	}
 	return getBookno()+" "+getName()+" "+getAuthor()+" "+"is"+" "+ reserved;
+}
+    public String bookReservation()
+    {
+    boolean reserved= this.getReservedStatus();
+    if(!reserved)
+    {
+        this.setReservedStatus(true);
+        return "Reserved for you!! Happy reading";
+    }
+    else
+            return "Sorry the book is already reserved";
 }
 }

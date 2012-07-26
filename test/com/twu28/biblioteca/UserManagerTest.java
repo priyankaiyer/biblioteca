@@ -1,35 +1,39 @@
 package com.twu28.biblioteca;
-import org.junit.Assert;
-import org.junit.Test;
 
-import java.io.IOException;
+import junit.framework.Assert;
+import junit.framework.TestCase;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class UserManagerTest extends BibliotecaTest{
+/**
+ * Created with IntelliJ IDEA.
+ * User: Priyanka
+ * Date: 26/7/12
+ * Time: 9:38 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class UserManagerTest extends TestCase {
+    UserManager userManager1= new UserManager(System.out,System.in);
+    public void test_to_check_correct_logging_in() throws Exception{
 
-    private UserManager userManager = new UserManager();
-    
-    @Test
-    @Override
-    public void loadmenu_test() throws IOException
-    {
-        String loadmenu_message = "Please login";
-        Assert.assertTrue(biblioteca.loadmenu().contains(loadmenu_message));
-    }
+        UserManager userManager= mock(UserManager.class);
+        when(userManager.ask("Please enter your username")).thenReturn("111-1113");
+        when(userManager.ask("Please enter your password")).thenReturn("user3");
+        User current_user= new User(userManager.ask("Please enter your username"),userManager.ask("Please enter your password"));
+        Assert.assertEquals("111-1113 is logged in",userManager1.verify_user(current_user));
 
-    @Test
-    public void test_should_be_able_login_with_correct_username_and_password(){
-        User user = new User("111-1111", "user1");
-
-        Assert.assertEquals("Successfully logged in", userManager.login(user));
-    }
-
-    @Test
-    public void test_should_fail_to_login_when_provide_wrong_username_or_password(){
-        User user_invalid_name = new User("111-0001", "user1");
-
-        Assert.assertEquals("Invalid username/ password", userManager.login(user_invalid_name));
-        Assert.assertEquals(false, user_invalid_name.isLogged_in());
 
     }
+    public void test_to_check_invalid_logging_in() throws Exception{
+
+        UserManager userManager= mock(UserManager.class);
+        when(userManager.ask("Please enter your username")).thenReturn("111-1110");
+        when(userManager.ask("Please enter your password")).thenReturn("user4");
+        User current_user= new User(userManager.ask("Please enter your username"),userManager.ask("Please enter your password"));
+        Assert.assertEquals("Invalid username/ password",userManager1.verify_user(current_user));
+
+
+    }
+
 }

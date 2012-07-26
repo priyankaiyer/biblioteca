@@ -7,11 +7,9 @@ import java.util.ArrayList;
 
 
 public class Biblioteca {
-    BookManager bookManager= new BookManager();
+    BookManager bookManager= new BookManager(System.in, System.out);
     MovieManager movieManager= new MovieManager();
-    UserManager userManager= new UserManager();
-    private User current_user= new User("xxx","xxx");
-    BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(System.in));
+    UserManager userManager= new UserManager(System.out,System.in);
     public ArrayList<String> menuOptions;
     /* customer seeing welcome message during the start of the application*/
     public String welcomeMessage()
@@ -44,29 +42,6 @@ public class Biblioteca {
     FunctionManager functionManager= FunctionManager.getFromKey(choice);
     return functionManager.getFunction().execute(this);
     }
-    String userlogin() throws IOException {
-    	if(current_user.isLogged_in())
-    		return "You have already logged in";
-    	else
-    	{
-    	System.out.println("Please enter username/library number");
-    	String username=bufferedReader.readLine();
-    	System.out.println("Please enter your password");
-    	String password=bufferedReader.readLine();
-       current_user= new User(username, password);
-    	String result=userManager.login(current_user);
-    	return result;
-    	}
-    }
-    public String checkLibraryNumber() throws IOException
-    {
-        if(current_user.isLogged_in())
-        {
-        	return "Hello"+" "+current_user.getUser_name();
-        }
-        else
-        	return "Please talk to the librarian";
-    }
     public static void main(String args[]) throws IOException
     {
         Biblioteca biblioteca= new Biblioteca();
@@ -84,6 +59,15 @@ public class Biblioteca {
                System.out.println(print_on_screen);
         }
     }
+    public String checkLibraryNumber() throws IOException
+    {
+        if(userManager.current_user.isLogged_in())
+        {
+            return "Hello"+" "+userManager.current_user.getUser_name();
+        }
+        else
+            return "Please talk to the librarian";
+    }
     public BookManager getBookManager() {
         return bookManager;
     }
@@ -91,16 +75,9 @@ public class Biblioteca {
     public MovieManager getMovieManager() {
         return movieManager;
     }
-	public String bookReserve() throws NumberFormatException, IOException {
-		if(!current_user.isLogged_in())
-		{
-			System.out.println("Please Login");
-		userlogin();
-		}
-			
-		 System.out.println("Please enter the book no");
-         int bookno=Integer.parseInt( bufferedReader.readLine());
-         String reservationResult= bookManager.reserveBook(bookno);
-       return reservationResult;
-	}
+    public UserManager getUserManager()
+    {
+        return userManager;
+    }
+
 }
